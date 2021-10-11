@@ -1,12 +1,17 @@
-/* avl.c
- * Implementação das operações realizadas sobre o TAD que  
- * representa uma árvore AVL.
- *
- * Ciro C. Trindade
- * 06/out/2021
+/**
+ * Bruno Luis - 5142934 - SI
+ * Igor Amon - 1612804 - SI
+ * Leonardo Blume - ??????? - SI
+ * Gustavo Medeiros - ??????? - ??
  */
- 
-#include "cabecalho.h"
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <locale.h>
+#include "dicionario.h"
 
 void print_tree(avl_tree t) {
     if (t != NULL) {

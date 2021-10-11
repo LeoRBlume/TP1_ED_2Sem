@@ -1,11 +1,15 @@
-#include "cabecalho.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <locale.h>
+#include "dicionario.h"
 
 #define MAX_LEN 63
 
 int main() {
-
     setlocale(LC_ALL, ". UTF8") ;
-    
 
     avl_tree t = NULL; // Ponteiro para a raiz da árvore
     FILE * arq; // Arquivo lógico
@@ -31,7 +35,6 @@ int main() {
     }
 
     fclose(arq);
-
     
     do{
         printf("\n-------Menu de Operações do dicionario-------\n\n");
@@ -72,9 +75,6 @@ int main() {
         }   
     }
     while (op != 0);
-
-
     close(t);
-
     return 0;
 }

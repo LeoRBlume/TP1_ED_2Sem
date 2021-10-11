@@ -1,13 +1,12 @@
-/* avl.h
- * Definição do TAD para representar uma árvore AVL e protótipo
- * de suas operações.
- *
- * Ciro C. Trindade
- * 06/out/2021
+/**
+ * Bruno Luis - 5142934 - SI
+ * Igor Amon - 1612804 - SI
+ * Leonardo Blume - ??????? - SI
+ * Gustavo Medeiros - ??????? - ??
  */
 
-#ifndef __CABECALHO_H
-#define __CABECALHO_H
+#ifndef __DICIONARIO_H
+#define __DICIONARIO_H
 
 #include <stdbool.h>
 #include <stdio.h>
