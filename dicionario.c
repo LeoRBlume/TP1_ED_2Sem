@@ -402,7 +402,7 @@ void avl_save(avl_tree t, char * filename)
     do {
         printf("\n> Deseja salvar as alterações? (s/n) ");
         scanf(" %c", &op);
-    } while (tolower(op) != 'n' && tolower(op) == 's');
+    } while (tolower(op) != 'n' && tolower(op) != 's');
 
     if (op == 's') {
         do { 

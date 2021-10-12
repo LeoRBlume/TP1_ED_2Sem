@@ -25,9 +25,10 @@ int main() {
     do{
         printf("\n============ Menu de Operações do dicionario =========\n");
         printf("[1] Exibir todas palavras e sinônimos\n");
-        printf("[2] Procurar pelo sinônimo de uma palavra\n");
-        printf("[3] Substituir o sinonimo de uma palavra por outro\n");
-        printf("[4] Excluir uma palavra (e seu sinônimo)\n");
+        printf("[2] Inserir uma palavra e sinônimo\n");
+        printf("[3] Procurar pelo sinônimo de uma palavra\n");
+        printf("[4] Substituir o sinonimo de uma palavra por outro\n");
+        printf("[5] Excluir uma palavra (e seu sinônimo)\n");
         printf("[0] Sair e salvar\n");
         printf("\nOpção: ");
         scanf("%d", &op);
@@ -42,14 +43,25 @@ int main() {
                 break;
 
             case 2:
-                printf("\n> Informe o sinonimo: ");
-                scanf(" %30[^\n]", palavra);
-                printf("Palavras com sinonimos: ");
-                avl_search_sin(t, palavra);
+                printf("\n> Informe a palavra: ");
+                scanf(" %30[^\n]", str1);
+
+                printf("> Informe o sinonimo: ");
+                scanf(" %30[^\n]", str2);
+
+                avl_insert(&t, str1, str2, &h);
                 printf("\n");
             break;
 
             case 3:
+                printf("\n> Informe o sinonimo: ");
+                scanf(" %30[^\n]", palavra);
+                printf("Palavras com o sinonimo %s: ", palavra);
+                avl_search_sin(t, palavra);
+                printf("\n");
+            break;
+
+            case 4:
                 printf("\n> Informe a palavra que deseja substituir o sinonimo: ");
                 scanf(" %30[^\n]", str1);
 
@@ -60,7 +72,7 @@ int main() {
                 printf("\n");
             break;
 
-            case 4:
+            case 5:
                 printf("\n> Informe uma palavra para excluir: ");
                 scanf(" %30[^\n]", str1);
 
@@ -70,6 +82,13 @@ int main() {
                     printf("Não deletado");
                 printf("\n");
             break;
+
+            case 0:
+                break;
+
+            default:
+                printf("\n=================== OPÇÃO INVÁLIDA ===================\n");
+                break;
         }   
     }
     while (op != 0);
