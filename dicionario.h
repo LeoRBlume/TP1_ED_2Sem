@@ -46,7 +46,7 @@ void avl_print(avl_tree t);
  * x é inserida em t e h sinaliza que houve um aumento da
  * altura de t.
  */
-void avl_search(avl_tree * t, char * x, char * y, bool * h);
+void avl_insert(avl_tree * t, char * x, char * y, bool * h);
 
 /**
  * Faz uma rotação para a esquerda na árvore AVL t.

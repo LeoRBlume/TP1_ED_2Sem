@@ -29,7 +29,7 @@ void avl_init(avl_tree *t, char * filename)
     }
 
     while (fscanf(arq, " %[^' '|\t] %[^' '|\t|\n]", str1, str2) != EOF) {
-        avl_search(t, str1, str2, &h);
+        avl_insert(t, str1, str2, &h);
     }
 
     fclose(arq);
@@ -44,7 +44,7 @@ void avl_print(avl_tree t)
     }
 }
 
-void avl_search(avl_tree * t, char * x, char * y, bool * h)
+void avl_insert(avl_tree * t, char * x, char * y, bool * h)
 {
     if (*t == NULL) {
         if ((*t = (avl_tree) malloc(sizeof(struct avl_no))) == NULL) {
@@ -62,7 +62,7 @@ void avl_search(avl_tree * t, char * x, char * y, bool * h)
 
     // Inserir a esquerda
     else if (strcasecmp(x,(*t)->dado.palavra) < 0) {
-        avl_search(&(*t)->esq, x, y, h);
+        avl_insert(&(*t)->esq, x, y, h);
 
         // O ramo esquerdo cresceu
         if (*h) {
@@ -111,7 +111,7 @@ void avl_search(avl_tree * t, char * x, char * y, bool * h)
 
     // Inserir a direita
     else if (strcasecmp(x,(*t)->dado.palavra) > 0) {
-        avl_search(&(*t)->dir, x, y, h);
+        avl_insert(&(*t)->dir, x, y, h);
         
         // O ramo direito cresceu
         if (*h) {
@@ -163,7 +163,7 @@ void avl_search(avl_tree * t, char * x, char * y, bool * h)
         strcpy((*t)->dado.sinonimo,y);
     }
        
-} // fim de avl_search
+} // fim de avl_insert
 
 void avl_rotacao_esq(avl_tree * t)
 {
@@ -399,21 +399,30 @@ void avl_save(avl_tree t, char * filename)
     FILE * arq;
     char op;
 
-    printf("\n> Salvar as palavras e os sinônimos em %s? (s/n) ", filename);
-    scanf(" %c", &op);
+    do {
+        printf("\n> Deseja salvar as alterações? (s/n) ");
+        scanf(" %c", &op);
+    } while (tolower(op) != 'n' && tolower(op) == 's');
 
-    if (tolower(op) == 'n') {
-        printf("> Novo nome do arquivo para salvar com a extensão (.txt): ");
-        scanf(" %60[^\n]", filename);
-    }
-    
-    if ((arq = fopen(filename, "w")) == NULL) {
-        fprintf(stderr, "Erro na abertura do arquivo arq.txt\n");
-        return;
-    }
+    if (op == 's') {
+        do { 
+            printf("> Salvar as palavras e os sinônimos em %s? (s/n) ", filename);
+            scanf(" %c", &op);
+        } while (tolower(op) != 'n' && tolower(op) == 's');
 
-    avl_file_save(t, arq);
-    fclose(arq);
+        if (tolower(op) == 'n') {
+            printf("> Novo nome do arquivo para salvar com a extensão (.txt): ");
+            scanf(" %60[^\n]", filename);
+        }
+        
+        if ((arq = fopen(filename, "w")) == NULL) {
+            fprintf(stderr, "Erro na abertura do arquivo arq.txt\n");
+            return;
+        }
+
+        avl_file_save(t, arq);
+        fclose(arq);
+    }
 }
 
 void avl_file_save(avl_tree t, FILE * arq)
