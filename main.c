@@ -23,16 +23,25 @@ int main() {
     avl_init(&t, filename);
     
     do{
-        printf("\n========Menu de Operações do dicionario========\n\n");
-        printf("[1] Procurar pelo sinônimo de uma palavra\n");
-        printf("[2] Substituir o sinonimo de uma palavra por outro\n");
-        printf("[3] Excluir uma palavra (e seu sinônimo)\n");
+        printf("\n============ Menu de Operações do dicionario =========\n");
+        printf("[1] Exibir todas palavras e sinônimos\n");
+        printf("[2] Procurar pelo sinônimo de uma palavra\n");
+        printf("[3] Substituir o sinonimo de uma palavra por outro\n");
+        printf("[4] Excluir uma palavra (e seu sinônimo)\n");
         printf("[0] Sair e salvar\n");
         printf("\nOpção: ");
         scanf("%d", &op);
 
         switch(op){
             case 1:
+                printf("\n======================================================\n");
+                printf("Palavra                        Sinônimo\n");
+                printf("======================================================\n");
+                avl_print(t);
+                printf("======================================================\n");
+                break;
+
+            case 2:
                 printf("\n> Informe o sinonimo: ");
                 scanf(" %30[^\n]", palavra);
                 printf("Palavras com sinonimos: ");
@@ -40,7 +49,7 @@ int main() {
                 printf("\n");
             break;
 
-            case 2:
+            case 3:
                 printf("\n> Informe a palavra que deseja substituir o sinonimo: ");
                 scanf(" %30[^\n]", str1);
 
@@ -51,7 +60,7 @@ int main() {
                 printf("\n");
             break;
 
-            case 3:
+            case 4:
                 printf("\n> Informe uma palavra para excluir: ");
                 scanf(" %30[^\n]", str1);
 

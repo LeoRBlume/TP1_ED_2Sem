@@ -39,7 +39,7 @@ void avl_print(avl_tree t)
 {
     if (t != NULL) {
         avl_print(t->esq);
-        printf("Palavra: %s | Sinônimo: %s\n", t->dado.palavra, t->dado.sinonimo);
+        printf("%-30s %-30.30s\n", t->dado.palavra, t->dado.sinonimo);
         avl_print(t->dir);
     }
 }
